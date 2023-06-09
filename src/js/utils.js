@@ -1,10 +1,14 @@
 class UtilsClass {
 
     constructor() {
-        this.resetFile()
+        this.reset()
     }
 
-    resetFile() {
+    reset() {
+        this.node = {
+            a: null,
+            f: null
+        }
         this.file = {
             url: null,
             name: 'Data',
@@ -16,16 +20,16 @@ class UtilsClass {
     }
 
     load (output) {
-        var f = this._c('input')
-        f.type = 'file'
-        f.accept = 'application/json'
-        f.onchange = async (e) => {
+        this.node.f = this.node.f || this._c('input')
+        this.node.f.type = 'file'
+        this.node.f.accept = 'application/json'
+        this.node.f.onchange = async (e) => {
             e.preventDefault()
             var file = e.target.files[0]
 
             if(file.type !== 'application/json') {
                 alert('Invalid file type')
-                return this.resetFile()
+                return this.reset()
             }
 
             this.file.content = await file.text()
@@ -37,30 +41,33 @@ class UtilsClass {
 
             output.innerHTML = this.file.content
         }
-        f.click()
+        this.node.f.click()
     }
 
     save(text) {
-        var a  = this._c('a')
-        a.href = this.createBlob(text)
-        a.download = this.file.name + '.json'
-        a.click()
+        this.node.a = this.node.a || this._c('a')
+        this.node.a.href = this.createBlob(text)
+        this.node.a.download = this.file.name + '.json'
+        this.node.a.click()
     }
 
     // Utils :P --------------------------------------
     createBlob(text) {
-        let d = new Blob([text], {type: this.file.typeOnSave})
-
-        // If a file has been previously generated, revoke the existing URL
         if (this.file.url !== null) window.URL.revokeObjectURL(this.file.url)
+        
+        // Creates a new blob object and assigns it to the file.url property
+        this.file.url = window.URL.createObjectURL(new Blob([text], {type: this.file.typeOnSave}))
 
-        this.file.url = window.URL.createObjectURL(d)
-        // Returns a reference to the global variable holding the URL
-        // Again, this is better than generating and returning the URL itself from the function as it will eat memory if the file contents are large or regularly changing
         return this.file.url
     }
 
     _(element, root) { return (root ? root : document).querySelector(element) || false }
     _a(element, root) { return (root ? root : document).querySelectorAll(element) || false }
-    _c(element, root) { return (root ? root : document).createElement(element) || false }
+    _c(element, root) { 
+        var e = document.createElement(element)
+        return (root ? root.appendChild(e) : e) 
+    }
 }
+
+const Utils = new UtilsClass()
+export default Utils

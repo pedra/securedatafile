@@ -14,12 +14,20 @@ header .container {
     align-items: center;
 }
 
-.hdr-logo {
-    width: 32px;
-}
-
+header .left,
 header .right {
     display: flex;
+    color: #fff;
+    align-items: center;
+}
+
+header .left {
+    gap: .8rem;
+    font-size: 1.3rem;
+}
+
+header .left img {
+    width: 32px;
 }
 
 header button {

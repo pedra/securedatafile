@@ -1,23 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ModBase</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/manifest/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/manifest/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/manifest/favicon-16x16.png">
+    <link rel="manifest" href="/manifest/site.webmanifest">
+    <link rel="mask-icon" href="/manifest/safari-pinned-tab.svg" color="#420960">
+    <link rel="shortcut icon" href="/manifest/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Modbase">
+    <meta name="application-name" content="Modbase">
+    <meta name="msapplication-TileColor" content="#420960">
+    <meta name="msapplication-config" content="/manifest/browserconfig.xml">
+    <meta name="theme-color" content="#420960">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&family=Source+Code+Pro&display=swap">
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="js/utils.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="js/main.js" type="module" defer></script>
 </head>
 
 <body>
     <header>
         <div class="container">
             <div class="left">
-                <img src="assets/logo.png" alt="logo" class="hdr-logo">
+                <img src="/manifest/favicon-32x32.png" alt="logo">
+                <span>ModBase</span>
             </div>
 
             <div class="right">
@@ -29,7 +45,7 @@
 
     <main>
         <div class="container">
-            <div id='output' class="output"></div>
+            <div id='output' class="output monospace"></div>
 
             <div class="todo">
                 <h3>Todo:</h3>
@@ -47,7 +63,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; Todos os direitos reservados a <a href="https://billrocha.com/">billrocha.com</a></p>
+            <p>&copy; Todos os direitos reservados a <a href="https://billrocha.com/" target="_blank">billrocha.com</a></p>
         </div>
     </footer>
 </body>
