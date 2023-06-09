@@ -1,0 +1,41 @@
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    padding: .5rem 0;
+    background: #123;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+header .container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hdr-logo {
+    width: 32px;
+}
+
+header .right {
+    display: flex;
+}
+
+header button {
+    border: none;
+    padding: .6rem 1.5rem;
+    cursor: pointer;
+    background-image: linear-gradient(to top, #456, #567);
+    color: #fff;
+    opacity: .8;
+    border-radius: 0 1rem 1rem 0;
+}
+
+header button:hover {
+    opacity: 1;
+}
+
+header button:first-child {
+    border-radius: 1rem 0 0 1rem;
+}

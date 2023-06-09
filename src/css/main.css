@@ -1,0 +1,29 @@
+main {
+    display: flex;
+    flex: 1;
+}
+main .container {
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f0f0f0;
+    box-shadow: 0 0 100px rgba(0,0,0,.2);
+}
+
+
+main .output {
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+
+.todo {
+    padding: 1rem;
+    margin: 2rem 0 0 0;
+    background: #f00;
+    color: #fff;
+}
+.todo li {
+    margin: 0 0 0 2rem;
+    padding: .5rem 0;
+}
