@@ -20,19 +20,35 @@ class UtilsClass {
     }
 
     load (output) {
-        this.node.f = this.node.f || this._c('input')
+        this.node.f = this._c('input')
         this.node.f.type = 'file'
         this.node.f.accept = 'application/json'
         this.node.f.onchange = async (e) => {
             e.preventDefault()
             var file = e.target.files[0]
 
-            if(file.type !== 'application/json') {
-                alert('Invalid file type')
+            if(file.type !== 'application/json' && 
+                file.type !== 'text/plain' &&
+                file.size > 9999999) {
+                alert('Invalid file type or size too large!\nSize: ' + file.size + '\nType: ' + file.type)
                 return this.reset()
             }
 
-            this.file.content = await file.text()
+            output.innerHTML = ''
+
+            try{
+                var enc = await file.text()
+                var dec = decrypt(enc, Utils._('#hdr-pass').value)
+                // TODO: flag GREEN on display  
+                // Usar JSON.parse(dec) para validar e carregar os dados.            
+            } catch(e) { 
+                alert('Invalid password!')
+                dec = enc
+                // TODO: flag RED on display
+                // Usar JSON.parse(dec) para validar e carregar os dados de um arquivo sem criptografia
+            }
+            this.file.content = dec
+
             this.file.name = file.name.replace(/\.[^/.]+$/, "")      // remove extension
                                       .replace(/[^a-zA-Z0-9_]/g, '') // remove special characters
                                       .replace(/(?:^|\s|["'([{])+\S/g, match => match.toUpperCase()) // capitalize first letter
@@ -45,8 +61,9 @@ class UtilsClass {
     }
 
     save(text) {
-        this.node.a = this.node.a || this._c('a')
-        this.node.a.href = this.createBlob(text)
+        var enc = encrypt(text, Utils._('#hdr-pass').value)
+        this.node.a = this._c('a')
+        this.node.a.href = this.createBlob(enc)
         this.node.a.download = this.file.name + '.json'
         this.node.a.click()
     }

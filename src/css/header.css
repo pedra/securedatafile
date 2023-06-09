@@ -30,9 +30,14 @@ header .left img {
     width: 32px;
 }
 
+header .hdr-pass {
+    border: none;
+    padding: .3rem 1rem; 
+    border-radius: 1rem;
+}
 header button {
     border: none;
-    padding: .6rem 1.5rem;
+    padding: .3rem 1.5rem;
     cursor: pointer;
     background-image: linear-gradient(to top, #456, #567);
     color: #fff;
